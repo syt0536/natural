@@ -1,0 +1,75 @@
+<h3 class="text-position">{{structureType | titlecase}} Search Results</h3>
+<!-- <h4>Drugs for Glaucoma Treatment</h4> -->
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" >
+  <tr>
+    <th>Structure</th>
+    <th>Database Id</th>
+    <!--<th>pChembl value</th>-->
+    <!-- <th>Formula</th> -->
+    <th>Mol Weight</th>
+    <th>Slogp</th>
+    <th>HBA</th>
+    <th>HBD</th>
+    <th>RTB</th>
+    <th>PSA</th>
+  </tr>
+  <tr *ngFor='let ar of images'>
+    <td> 
+      <!-- <a  [routerLink]="['/target/'+ar.target_id]" routerLinkActive="router-link-active">{{ar.target_id}}</a> -->
+      <app-jsme [elementId]="ar?.np_id"
+                [width]="'100px'"
+                [height]="'100px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="ar?.canonical_smiles"
+      >
+      </app-jsme>
+    </td>
+    <td>
+        <ng-container>
+           {{ar?.np_id}}
+          </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.amw}}
+           </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.slogp}}
+           </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.numhba}}
+           </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.numhbd}}
+           </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.numrotatablebonds}}
+           </ng-container>
+    </td>
+    <td>
+        <ng-container>
+            {{ar?.tpsa}}
+           </ng-container>
+    </td>
+  </tr>
+</table>
+<div>
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <div class="mdl-cell mdl-cell--11-col">
+        <mat-paginator [length]="num"
+                       [pageSize]="num"
+                       [pageSizeOptions]="[10]"
+                       (page)="pageChanges($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>

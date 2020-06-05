@@ -1,0 +1,74 @@
+<h2>Target Details</h2>
+<hr>
+<div class="container-fluid">
+	<div class="row-fluid" >
+	<!--  -->
+		<div class="span12"  >
+			<table class="table table-bordered" *ngFor='let image of images' >
+				<tbody>
+            		<tr class="info">
+                		<td>Pref Name</td>
+                		<td>{{image.name}}</td>
+              		</tr>
+					<tr>
+						<td>Target Id</td>
+						<td>{{image.tid}}</td>
+					</tr>
+					<tr class="success">
+						<td>Target Type</td>
+						<td>{{image.type}}</td>
+					</tr>
+				
+					<tr class="error">
+						<td>Organism</td>
+						<td>{{image.organism}}</td>
+					</tr>
+					<tr class="warning">
+						<td>Target Uniprot Id</td>
+						<td>
+							<!-- <a  href="https://www.ebi.ac.uk/chembl/target_report_card/{{image.target_chembl_id}}" target="_blank" > -->
+							{{image.uniprot_id}}
+						<!-- </a> -->
+						</td>
+					</tr>
+					<tr >
+                		<td>Gene</td>
+                		<td>{{image.gene}}</td>
+              		</tr>
+					<tr class="info"> 
+						<td>Target Class</td>
+						<td>{{image.target_class}}</td>
+					</tr>
+					<tr>
+						<td>Target Pubmed Id</td>
+						<td>{{image.pubmed_id}}</td>
+					</tr>
+					<!-- <tr class="error">
+						<td>Organism</td>
+						<td>{{image.organism}}</td>
+					</tr> -->
+					<tr class="success">
+						<td>Target Synonyms</td>
+						<td>{{image.synonyms}}</td>
+					</tr>
+					<tr>
+						<td>Related Molecules</td>
+						<td  title="{{image.mol_id}}"><div class="wrap">{{image.mol_id}}</div></td>
+					</tr>	
+					<!-- <tr class="warning">
+						<td>Related Derivative Molecules</td>
+						<td>{{image.other_mol_id}}</td>
+						
+					</tr> -->
+					<tr class="warning">
+						<td>Bioactivitles</td>
+						<td>
+							<a  [routerLink]="['/BTarget/'+image.tid]" routerLinkActive="router-link-active">Compound&nbsp;&nbsp;Bioactivitles({{num}}) </a>
+							
+								<a  [routerLink]="['/BTargetD/'+image.tid]" routerLinkActive="router-link-active">Derivative&nbsp;&nbsp;Bioactivitles({{num1}})</a></td>
+					</tr>
+        		</tbody>
+			  </table>
+		</div>
+	</div>
+</div>

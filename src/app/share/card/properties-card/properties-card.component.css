@@ -1,0 +1,20 @@
+.mdl-data-table {
+    white-space: normal;
+  }
+  .mdl-cell--4-col{
+      margin-top:80px;
+  }
+  /* table{
+    table-layout: fixed;
+  } */
+  /* th{
+      height:20px;
+      width:50px;
+  } */
+  
+.wrap{
+    width: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden; 
+    }

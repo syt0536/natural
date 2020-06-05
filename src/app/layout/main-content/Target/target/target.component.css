@@ -1,0 +1,22 @@
+h2{
+    text-align:center;
+}
+.row-fluid{
+    width:70%;
+    margin:0 auto;
+}
+a{
+    text-decoration:none
+}
+.table{
+    width: 600px;
+}
+.wrap{
+    width: 670px; 
+    height:auto;
+    max-height: 200px;
+    /* white-space: nowrap;
+    text-overflow: ellipsis; */
+    /* overflow: hidden; */
+    overflow-x: scroll;
+    }
