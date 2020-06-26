@@ -55,24 +55,10 @@ export class TableDerivativeComponent implements OnInit {
       this._getDrugs2(0, this.pageSize); 
     });
   }
-  // 小搜索框的搜索方法
-  // hqnew() {
-  //       this.result1 = this.content.nativeElement.value;
-  //       this._getDrugs2(0, this.pageSize);
-  // }
-  // private _getDrugs(page?, perPage?) {
-  //     this.restservice.getDataList(`YNpDbLocal/?search=${this.result1}`, page, perPage)
-  //     .subscribe(data => {
-  //       this.images = data['np_db_locals'];
-  //       this.pageMeta = data['meta'];
-  //       console.log(this.images);
-  //       console.log(this.pageMeta);
-  //     });
-  // }
   private _getDrugs2(page?, perPage?) {
     this.restservice.getDataList(`DerChemInfo/${this.result1}`, page, perPage)
     .subscribe(data => {
-      this.images = data['der_chem_infos'];
+      this.images = data['der_chem_info2s'];
       console.log(data)
       this.pageMeta= data['meta'];
       // this.per_page=10
@@ -85,25 +71,4 @@ export class TableDerivativeComponent implements OnInit {
   pageChange(event) {
     this._getDrugs2(event.pageIndex, event.pageSize);
   }
-  cellClicked(params){
-    this.myRouter.navigateByUrl(`Derivative/${params.data.der_id}`)
-    console.log(params)
-  }
-  onBtExport() {
-    this.params = {
-      fileName: this.fileName1,
-      sheetName: this.sheetName1
-    };
-    this.gridApi.exportDataAsCsv(this.params);
-  }
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-  }
-  // getSelectedRows() {
-  //   const selectedNodes = this.agGrid.api.getSelectedNodes();
-  //   const selectedData = selectedNodes.map( node => node.data );
-  //   const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
-  //   alert(`Selected nodes: ${selectedDataStringPresentation}`);
-  // }
   }

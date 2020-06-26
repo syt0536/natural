@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   @ViewChild(JsmeComponent) jsme: JsmeComponent;
   jsmeSmiles: string;
   images=[];
-  structureTypes = ['structure', 'substructure'];
+  structureTypes = ['structure', 'substructure','mmp'];
   structureType = this.structureTypes[0];
   similarity = 0.9;
   drugSearchTypeList = [
@@ -54,7 +54,9 @@ export class SearchComponent implements OnInit {
               ) { };
 
   ngOnInit() {
-    this.jsmeSmiles = 'CNCC(O)c1ccc(OC(=O)C(C)(C)C)c(OC(=O)C(C)(C)C)c1';
+    // this.jsmeSmiles = 'CNCC(O)c1ccc(OC(=O)C(C)(C)C)c(OC(=O)C(C)(C)C)c1';
+    this.jsmeSmiles = 'Fc1ccc(c(F)c1)';
+
     // this._getDrugs(this.jsme.smiles,this.similarity)
     this.form = new FormGroup({
       name: new FormControl ('', [Validators.required, Validators.minLength(2)]),
@@ -140,7 +142,12 @@ export class SearchComponent implements OnInit {
           smiles: this.jsme.smiles,
           similarity: this.similarity
         }});
-      } else if ( this.structureType === 'substructure') {
+      } 
+      else if(this.structureType === 'mmp'){
+        this.router.navigate(['/searchmmp/', this.jsme.smiles
+        ])
+    }
+      else if ( this.structureType === 'substructure') {
         this.router.navigate(['/searchr/'], {queryParams: {
           structureType: this.structureType,
           smiles: this.jsme.smiles,
@@ -164,7 +171,7 @@ export class SearchComponent implements OnInit {
   // get hbonda1 () {return this.form.get('hbonda1'); }
   // get rot() {return this.form.get('rot')}
   // get rot1() {return this.form.get('rot1')}
-  onSubmitform() {
+   onSubmitform() {
     // const form = this.form.value;
     // const body = {
     //   username: form.name,
@@ -176,31 +183,31 @@ export class SearchComponent implements OnInit {
     // console.log('feedback:', body);
 
     if(this.form.value.name!==''&&this.form.value.name1!==''){
-      this.slogp='+slogp'
+      this.slogp='+ALOGP'
       this.form.value.name='+'+this.form.value.name;
       this.form.value.name1='+'+this.form.value.name1;
     }
     if(this.form.value.amw!==''&&this.form.value.amw1!==''){
-      this.amw='amw';
+      this.amw='MW';
       this.form.value.amw=this.form.value.amw;
       this.form.value.amw1=this.form.value.amw1;
     }else{
-      this.amw='amw';
+      this.amw='MW';
       this.form.value.amw=0;
       this.form.value.amw1=5000;
     }
     if(this.form.value.hbond!==''&&this.form.value.hbond!==''){
-      this.hbd='+numhbd'
+      this.hbd='+HBD'
       this.form.value.hbond='+'+this.form.value.hbond;
       this.form.value.hbond1='+'+this.form.value.hbond1;
     }
     if(this.form.value.hbonda!==''&&this.form.value.hbonda1!==''){
-      this.hba='+numhba'
+      this.hba='+HBA'
       this.form.value.hbonda='+'+this.form.value.hbonda;
       this.form.value.hbonda1='+'+this.form.value.hbonda1;
     }
     if(this.form.value.rot!==''&&this.form.value.rot1!==''){
-      this.rtb='+numrotatablebonds'
+      this.rtb='ROTB'
       this.form.value.rot='+'+this.form.value.rot;
       this.form.value.rot1='+'+this.form.value.rot1;
     }

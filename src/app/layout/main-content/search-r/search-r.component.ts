@@ -52,11 +52,11 @@ export class SearchRComponent implements OnInit {
       console.log(this.num)
       for(var i=0;i<data.length;i++){
         this.id1=data[i]['name']
-console.log(this.id1)
-if(this.id1.indexOf("N")!==-1){
+      console.log(this.id1)
+      if(this.id1.indexOf("N")!==-1){
         this.restservice.getDataList(`NPChemInfo/?search=${this.id1}`)
           .subscribe(data => {
-            this.obj = data['np_chem_infos'][0];
+            this.obj = data['np_chem_info2s'][0];
             // console.log(this.obj['name'])
             // if(this.obj['name'].indexOf("N")!==-1){
             this.images.push(this.obj)
@@ -66,51 +66,48 @@ if(this.id1.indexOf("N")!==-1){
           else{
             this.restservice.getDataList(`DerChemInfo/?search=${this.id1}`)
             .subscribe(data => {
-              this.obj = data['der_chem_infos'][0];
+              this.obj = data['der_chem_info2s'][0];
               this.obj['np_id']=this.obj['der_id']
               this.images.push(this.obj)
               })
             
             }
-        // this.pageMeta = data['meta'];
-        // console.log(data);
-        // console.log(this.images)
       }
      
     });
 }
-private _getDrugs2(sea?,page?) {
-  this.restservice.getDataList(`Substructuresimilarity/?pk='${sea}'`,page)
-  .subscribe(data => {
-    this.count=data['count']
-    this.num = data.length
-    console.log(this.num)
-    for(var i=0;i<data.length;i++){
-      this.id1=data[i]['name']
-      if(this.id1.indexOf("N")!==-1){
-      this.restservice.getDataList(`NPChemInfo/?np_id=${this.id1}`)
-        .subscribe(data => {
-          this.obj = data['np_chem_infos'][0];
-            // if(this.obj['name'].indexOf("N")!=-1){          
-          this.images.push(this.obj)
-        })
-      }
-      else{
-            this.restservice.getDataList(`DerChemInfo/?search=${this.id1}`)
+    private _getDrugs2(sea?,page?) {
+      this.restservice.getDataList(`Substructuresimilarity/?pk='${sea}'`,page)
+      .subscribe(data => {
+        this.count=data['count']
+        this.num = data.length
+        console.log(this.num)
+        for(var i=0;i<data.length;i++){
+          this.id1=data[i]['name']
+          if(this.id1.indexOf("N")!==-1){
+          this.restservice.getDataList(`NPChemInfo/?np_id=${this.id1}`)
             .subscribe(data => {
-              this.obj = data['der_chem_infos'][0];
-              this.obj['np_id']=this.obj['der_id']
-              this.images.push(this.obj) 
-                          })
-            
-            }
-          console.log(this.images);
-   
-      // this.pageMeta = data['meta'];
-      console.log(data);
-      console.log(this.images)
-    }
-})}
+              this.obj = data['np_chem_info2s'][0];
+                // if(this.obj['name'].indexOf("N")!=-1){          
+              this.images.push(this.obj)
+            })
+          }
+          else{
+                this.restservice.getDataList(`DerChemInfo/?search=${this.id1}`)
+                .subscribe(data => {
+                  this.obj = data['der_chem_info2s'][0];
+                  this.obj['np_id']=this.obj['der_id']
+                  this.images.push(this.obj) 
+                              })
+                
+                }
+              console.log(this.images);
+      
+          // this.pageMeta = data['meta'];
+          console.log(data);
+          console.log(this.images)
+        }
+    })}
  pageChanges(event){
   this.myrouter.queryParams.subscribe(queryParams => {
     console.log(queryParams);

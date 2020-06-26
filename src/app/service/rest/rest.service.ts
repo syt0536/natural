@@ -39,7 +39,7 @@ export class RestService {
     return this.http.get(`${this.restHost}/${url}&page=${page}&size=${perPage}`)
 };
 registry(body: any) {
-  return this.http.post(`${this.restHost}/registers/`, body);
+  return this.http.post(`${this.restHost}/TargetPrediction/`, body);
 }
 login(username: string, password: string): Observable<any> {
   return this.http.post(`${this.restHost}/rest-auth/login/`, {username: username, password: password})

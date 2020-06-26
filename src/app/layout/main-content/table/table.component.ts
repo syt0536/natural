@@ -72,7 +72,7 @@ ngOnInit() {
 private _getDrugs2(page?, perPage?) {
   this.restservice.getDataList(`NPChemInfo/${this.result1}`, page, perPage)
   .subscribe(data => {
-    this.images = data['np_chem_infos'];
+    this.images = data['np_chem_info2s'];
     console.log(data)
     this.pageMeta= data['meta'];
     // this.per_page=10
@@ -85,25 +85,5 @@ private _getDrugs2(page?, perPage?) {
 pageChange(event) {
   this._getDrugs2(event.pageIndex, event.pageSize);
 }
-cellClicked(params){
-  this.myRouter.navigateByUrl(`compound/${params.data.np_id}`)
-  console.log(params)
-}
-onBtExport() {
-  this.params = {
-    fileName: this.fileName1,
-    sheetName: this.sheetName1
-  };
-  this.gridApi.exportDataAsCsv(this.params);
-}
-onGridReady(params) {
-  this.gridApi = params.api;
-  this.gridColumnApi = params.columnApi;
-}
-// getSelectedRows() {
-//   const selectedNodes = this.agGrid.api.getSelectedNodes();
-//   const selectedData = selectedNodes.map( node => node.data );
-//   const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
-//   alert(`Selected nodes: ${selectedDataStringPresentation}`);
-// }
+
 }

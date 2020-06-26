@@ -23,15 +23,15 @@ export class TableCompoundComponent implements OnInit {
   columnDefs = [
     {headerName: 'Database Id', field: 'np_id', sortable: true, filter: true, width:238, },
     {headerName: 'Synonyms', field: 'synonyms', sortable: true, filter: true, width:238} ,
-    {headerName: 'Slogp', field: 'slogp', sortable: true, filter: true, width:238, },
-    {headerName: 'Mol Weight', field: 'amw', sortable: true, filter: true, width:238 },
-     {headerName: 'HBA', field: 'numhba', sortable: true, filter: true, width:238, },
-    {headerName: 'HBD', field: 'numhbd', sortable: true, filter: true, width:238 } ,
-    {headerName: 'Numrotatablebonds', field: 'numrotatablebonds', sortable: true, filter: true, width:238 } 
+    {headerName: 'Slogp', field: 'ALOGP', sortable: true, filter: true, width:238, },
+    {headerName: 'Mol Weight', field: 'MW', sortable: true, filter: true, width:238 },
+     {headerName: 'HBA', field: 'HBA', sortable: true, filter: true, width:238, },
+    {headerName: 'HBD', field: 'HBD', sortable: true, filter: true, width:238 } ,
+    {headerName: 'Numrotatablebonds', field: 'ROTB', sortable: true, filter: true, width:238 } 
   ];
-      toppings = new FormControl();
-      toppingList: string[] = ['Database Id','iupac_name', 'pref_name'];
-      displayedColumns: string[] = ['Database Id','iupac_name', 'pref_name'];
+  toppings = new FormControl();
+  toppingList: string[] = ['canonical_smiles', 'Database Id', 'Slogp','Mol Weight','HBA','HBD','Numrotatablebonds'];
+  displayedColumns: string[] = ['canonical_smiles', 'Database Id', 'Slogp','Mol Weight','HBA','HBD','Numrotatablebonds'];
       images:any;
       result1: string;
       // 分页
@@ -54,19 +54,6 @@ export class TableCompoundComponent implements OnInit {
     });
   }
   // 小搜索框的搜索方法
-  hqnew() {
-        this.result1 = this.content.nativeElement.value;
-        this._getDrugs(0, this.pageSize);
-  }
-  // private _getDrugs(page?, perPage?) {
-  //     this.restservice.getDataList(`NPenglishnamecas/${this.result1}`, page, perPage)
-  //     .subscribe(data => {
-  //       this.images = data['n_penglishnamecas'];
-  //       this.pageMeta = data['meta'];
-  //       console.log(this.images);
-  //       console.log(this.pageMeta);
-  //     });
-  // }
   private _getDrugs(page?, perPage?) {
     this.restservice.getDataList(`NPChemInfoSearch/${this.result1}`, page, perPage)
     .subscribe(data => {

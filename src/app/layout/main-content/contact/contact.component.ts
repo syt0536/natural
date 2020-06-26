@@ -41,12 +41,10 @@ export class ContactComponent implements OnInit {
       const form = this.contactForm.value;
       const body = {
         username: form.name,
-
         phone: form.phone,
         email: form.email,
         message: form.message,
-      };
-  
+      };  
       console.log('feedback:', body);
       // this.rest.userFeedback(body).subscribe(
       //   data => {
